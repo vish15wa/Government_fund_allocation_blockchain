@@ -1,0 +1,651 @@
+{
+	"compiler": {
+		"version": "0.8.31+commit.fd3a2265"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "RoleGranted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "RoleRevoked",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "schemeId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "monthlyAmount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "by",
+						"type": "address"
+					}
+				],
+				"name": "SchemeAdded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "schemeId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "active",
+						"type": "bool"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "by",
+						"type": "address"
+					}
+				],
+				"name": "SchemeToggled",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "schemeId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "by",
+						"type": "address"
+					}
+				],
+				"name": "SchemeUpdated",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "APPROVER_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "AUDITOR_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "DEFAULT_ADMIN_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "LOGGER_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "REGISTRY_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "REVIEWER_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "TREASURY_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "monthlyAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "minAge",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "maxAge",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "maxDays",
+						"type": "uint256"
+					}
+				],
+				"name": "addScheme",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "schemeId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getAllSchemeIds",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "schemeId",
+						"type": "uint256"
+					}
+				],
+				"name": "getMonthlyAmount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "schemeId",
+						"type": "uint256"
+					}
+				],
+				"name": "getScheme",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "schemeId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "monthlyAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "minAgeLimit",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "maxAgeLimit",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "maxProcessingDays",
+								"type": "uint256"
+							},
+							{
+								"internalType": "bool",
+								"name": "active",
+								"type": "bool"
+							},
+							{
+								"internalType": "uint256",
+								"name": "createdAt",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "updatedAt",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct SchemeConfig.Scheme",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32[]",
+						"name": "roles",
+						"type": "bytes32[]"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "grantMultipleRoles",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "grantRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "hasRole",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "schemeId",
+						"type": "uint256"
+					}
+				],
+				"name": "isSchemeActive",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					}
+				],
+				"name": "renounceRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "revokeRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "schemeIds",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "schemeId",
+						"type": "uint256"
+					}
+				],
+				"name": "toggleScheme",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalSchemes",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "schemeId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "monthlyAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "minAge",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "maxAge",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "maxDays",
+						"type": "uint256"
+					}
+				],
+				"name": "updateScheme",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"addScheme(string,uint256,uint256,uint256,uint256)": {
+					"notice": "Add a new pension scheme (admin only)"
+				},
+				"getAllSchemeIds()": {
+					"notice": "Get all registered scheme IDs"
+				},
+				"getMonthlyAmount(uint256)": {
+					"notice": "Get monthly pension amount for a scheme"
+				},
+				"getScheme(uint256)": {
+					"notice": "Get full scheme details"
+				},
+				"grantMultipleRoles(bytes32[],address)": {
+					"notice": "Convenience: grant multiple roles to one account (admin only)"
+				},
+				"grantRole(bytes32,address)": {
+					"notice": "Grant a role to an account (admin only)"
+				},
+				"hasRole(bytes32,address)": {
+					"notice": "Check if an account has a specific role"
+				},
+				"isSchemeActive(uint256)": {
+					"notice": "Check if a scheme exists and is active"
+				},
+				"renounceRole(bytes32)": {
+					"notice": "An account can voluntarily renounce their own role"
+				},
+				"revokeRole(bytes32,address)": {
+					"notice": "Revoke a role from an account (admin only)"
+				},
+				"toggleScheme(uint256)": {
+					"notice": "Toggle scheme active/inactive (admin only)"
+				},
+				"totalSchemes()": {
+					"notice": "Get total number of schemes"
+				},
+				"updateScheme(uint256,string,uint256,uint256,uint256,uint256)": {
+					"notice": "Update scheme parameters (admin only)"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"SchemeConfig.sol": "SchemeConfig"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"RoleAccess.sol": {
+			"keccak256": "0xab7e846cbe1bed61ba5d763c1071c1eac8e0fe716e50747f3256af41b6bc466d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c269ed651005f55e9dc72f5cb68fedd28c9b7f963ed945c0784882f6c824f6cf",
+				"dweb:/ipfs/QmQBPPWqP4brdiavQvFudDgnGe5d1wqwP4xYfSnkiKDzPr"
+			]
+		},
+		"SchemeConfig.sol": {
+			"keccak256": "0xa76be51f08635b52d4bdbe4d237d961123dc06feb49738de0ab8fd4bfdbf0750",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8bcbdfbe2a8e5f0467f88ca49dbdd41f7c56f64299e2cccc77ce967048d26989",
+				"dweb:/ipfs/QmXZXm7hSpx4vqkZQCb9nQf8UnwhrGWnA9V3dLd5rSe4vm"
+			]
+		}
+	},
+	"version": 1
+}
