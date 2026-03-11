@@ -1,0 +1,1085 @@
+{
+	"compiler": {
+		"version": "0.8.31+commit.fd3a2265"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "auditLogAddr",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "fundManagerAddr",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "schemeConfigAddr",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "ipfsVerifierAddr",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "applicationId",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "auditor",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					}
+				],
+				"name": "ApplicationApproved",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "applicationId",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "auditor",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "reason",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					}
+				],
+				"name": "ApplicationRejected",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "applicationId",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "applicant",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "schemeId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "ipfsCID",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					}
+				],
+				"name": "ApplicationSubmitted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "applicationId",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "applicant",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					}
+				],
+				"name": "DisputeRaised",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "applicationId",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "beneficiary",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					}
+				],
+				"name": "PaymentTriggered",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "applicationId",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "reviewer",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					}
+				],
+				"name": "ReviewStarted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "RoleGranted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "RoleRevoked",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "APPROVER_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "AUDITOR_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "DEFAULT_ADMIN_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "LOGGER_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "REGISTRY_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "REVIEWER_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "TREASURY_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"name": "aadhaarRegistered",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "applications",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "applicationId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "applicant",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "aadhaarHash",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "string",
+						"name": "ipfsCID",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "schemeId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "enum PensionRegistry.ApplicationState",
+						"name": "state",
+						"type": "uint8"
+					},
+					{
+						"internalType": "string",
+						"name": "rejectionReason",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "reviewer",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "auditor",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "submittedAt",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "decidedAt",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "paidAt",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "appId",
+						"type": "uint256"
+					}
+				],
+				"name": "approveApplication",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "auditLog",
+				"outputs": [
+					{
+						"internalType": "contract AuditLog",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "appId",
+						"type": "uint256"
+					}
+				],
+				"name": "beginReview",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "appId",
+						"type": "uint256"
+					}
+				],
+				"name": "checkSLABreach",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "breached",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "daysElapsed",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "fundManager",
+				"outputs": [
+					{
+						"internalType": "contract FundManager",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "appId",
+						"type": "uint256"
+					}
+				],
+				"name": "getApplication",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "applicationId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "applicant",
+								"type": "address"
+							},
+							{
+								"internalType": "bytes32",
+								"name": "aadhaarHash",
+								"type": "bytes32"
+							},
+							{
+								"internalType": "string",
+								"name": "ipfsCID",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "schemeId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "enum PensionRegistry.ApplicationState",
+								"name": "state",
+								"type": "uint8"
+							},
+							{
+								"internalType": "string",
+								"name": "rejectionReason",
+								"type": "string"
+							},
+							{
+								"internalType": "address",
+								"name": "reviewer",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "auditor",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "submittedAt",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "decidedAt",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "paidAt",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct PensionRegistry.Application",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "appId",
+						"type": "uint256"
+					}
+				],
+				"name": "getApplicationStatus",
+				"outputs": [
+					{
+						"internalType": "enum PensionRegistry.ApplicationState",
+						"name": "state",
+						"type": "uint8"
+					},
+					{
+						"internalType": "string",
+						"name": "rejectionReason",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "auditor",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "decidedAt",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "wallet",
+						"type": "address"
+					}
+				],
+				"name": "getApplicationsByWallet",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32[]",
+						"name": "roles",
+						"type": "bytes32[]"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "grantMultipleRoles",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "grantRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "hasRole",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "ipfsVerifier",
+				"outputs": [
+					{
+						"internalType": "contract IPFSVerifier",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "aadhaarHash",
+						"type": "bytes32"
+					}
+				],
+				"name": "isAadhaarRegistered",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "appId",
+						"type": "uint256"
+					}
+				],
+				"name": "raiseDispute",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "appId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "reason",
+						"type": "string"
+					}
+				],
+				"name": "rejectApplication",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					}
+				],
+				"name": "renounceRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "appId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "reopen",
+						"type": "bool"
+					}
+				],
+				"name": "resolveDispute",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "revokeRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "schemeConfig",
+				"outputs": [
+					{
+						"internalType": "contract SchemeConfig",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "aadhaarHash",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "string",
+						"name": "ipfsCID",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "schemeId",
+						"type": "uint256"
+					}
+				],
+				"name": "submitApplication",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "applicationId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalApplications",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "walletApplications",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"approveApplication(uint256)": {
+					"params": {
+						"appId": "The application ID to approve"
+					}
+				},
+				"beginReview(uint256)": {
+					"params": {
+						"appId": "The application ID to review"
+					}
+				},
+				"checkSLABreach(uint256)": {
+					"params": {
+						"appId": "The application to check"
+					},
+					"returns": {
+						"breached": " True if SLA has been exceeded",
+						"daysElapsed": "Number of days since submission"
+					}
+				},
+				"constructor": {
+					"params": {
+						"auditLogAddr": "Address of deployed AuditLog contract",
+						"fundManagerAddr": "Address of deployed FundManager contract",
+						"ipfsVerifierAddr": "Address of deployed IPFSVerifier contract",
+						"schemeConfigAddr": "Address of deployed SchemeConfig contract"
+					}
+				},
+				"raiseDispute(uint256)": {
+					"params": {
+						"appId": "The rejected application ID"
+					}
+				},
+				"rejectApplication(uint256,string)": {
+					"params": {
+						"appId": "The application ID to reject",
+						"reason": "A non-empty explanation for rejection - stored permanently on-chain"
+					}
+				},
+				"resolveDispute(uint256,bool)": {
+					"params": {
+						"appId": "The disputed application",
+						"reopen": "If true, reset to SUBMITTED for fresh review"
+					}
+				},
+				"submitApplication(bytes32,string,uint256)": {
+					"params": {
+						"aadhaarHash": "SHA-256 hash of (AadhaarNo + SchemeID + Salt) - computed off-chain",
+						"ipfsCID": "IPFS CID of the encrypted document bundle",
+						"schemeId": "ID of the pension scheme to apply under"
+					},
+					"returns": {
+						"applicationId": "The unique ID assigned to this application"
+					}
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"approveApplication(uint256)": {
+					"notice": "State welfare department approves an application"
+				},
+				"beginReview(uint256)": {
+					"notice": "Local government official begins reviewing an application"
+				},
+				"checkSLABreach(uint256)": {
+					"notice": "Check if an application has breached the SLA processing time"
+				},
+				"getApplication(uint256)": {
+					"notice": "Get complete application details (public)"
+				},
+				"getApplicationStatus(uint256)": {
+					"notice": "Get application status and rejection reason in one call (beneficiary-friendly)"
+				},
+				"getApplicationsByWallet(address)": {
+					"notice": "Get all application IDs submitted by a wallet address"
+				},
+				"grantMultipleRoles(bytes32[],address)": {
+					"notice": "Convenience: grant multiple roles to one account (admin only)"
+				},
+				"grantRole(bytes32,address)": {
+					"notice": "Grant a role to an account (admin only)"
+				},
+				"hasRole(bytes32,address)": {
+					"notice": "Check if an account has a specific role"
+				},
+				"isAadhaarRegistered(bytes32)": {
+					"notice": "Check if an Aadhaar hash is already registered"
+				},
+				"raiseDispute(uint256)": {
+					"notice": "Beneficiary can raise a dispute within 30 days of rejection"
+				},
+				"rejectApplication(uint256,string)": {
+					"notice": "State welfare department rejects an application (reason is MANDATORY)"
+				},
+				"renounceRole(bytes32)": {
+					"notice": "An account can voluntarily renounce their own role"
+				},
+				"resolveDispute(uint256,bool)": {
+					"notice": "Admin resolves a dispute - re-opens for review or keeps rejected"
+				},
+				"revokeRole(bytes32,address)": {
+					"notice": "Revoke a role from an account (admin only)"
+				},
+				"submitApplication(bytes32,string,uint256)": {
+					"notice": "Submit a pension application"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"PensionRegistry.sol": "PensionRegistry"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"AuditLog.sol": {
+			"keccak256": "0x9998c7985868f4b48f5642817339eed2e8fde1e9bb0597d635aac872768dc3e0",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6cee3fe2298bc6677374d38d9f7812a6e66fd4f8cffa5f69a26a0dbce4acd0fd",
+				"dweb:/ipfs/QmeV6eeh1489Ly3Uqz1W7x3FEbv2TpVCPaSrWXTSVaN3HP"
+			]
+		},
+		"FundManager.sol": {
+			"keccak256": "0x1f73baa4fd70fb81f544c582bcfc5942ce7e40dacfecb523aaa006df7a553e92",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b11bec17092587907fe723918fdd3e2840a976790f52547ca47edce7a6eb8f8a",
+				"dweb:/ipfs/QmNPi4atTaaoN3SxPoLJMyEvzcg1xeob3Vqrc2PL59xbf7"
+			]
+		},
+		"IPFSVerifier.sol": {
+			"keccak256": "0x797be392ee2d0c0221d32b494ec19d2f37cd298d280458c0f8ae1290d7e27bd4",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://69b140a6e4555dc15acea1ea4aeece77054af4ef9d96b5620068c4b32d8e8537",
+				"dweb:/ipfs/QmPMKZ8zF46hcajbAnpcad3b5t1nzZuKRukdk2tmN2iCZq"
+			]
+		},
+		"PensionRegistry.sol": {
+			"keccak256": "0xeafbed08a7b55bab1a865445f28183053e3dc36135bdf96c80920354ae86a6cd",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6c926a1e1a04d7363beee157ccf11a821a23b1c6cade75e812853a324a289345",
+				"dweb:/ipfs/QmWZUSLSkLnonj1pRsAAmeGg5ScmU3FndGVMuvaTSpC17x"
+			]
+		},
+		"RoleAccess.sol": {
+			"keccak256": "0xab7e846cbe1bed61ba5d763c1071c1eac8e0fe716e50747f3256af41b6bc466d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c269ed651005f55e9dc72f5cb68fedd28c9b7f963ed945c0784882f6c824f6cf",
+				"dweb:/ipfs/QmQBPPWqP4brdiavQvFudDgnGe5d1wqwP4xYfSnkiKDzPr"
+			]
+		},
+		"SchemeConfig.sol": {
+			"keccak256": "0xa76be51f08635b52d4bdbe4d237d961123dc06feb49738de0ab8fd4bfdbf0750",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8bcbdfbe2a8e5f0467f88ca49dbdd41f7c56f64299e2cccc77ce967048d26989",
+				"dweb:/ipfs/QmXZXm7hSpx4vqkZQCb9nQf8UnwhrGWnA9V3dLd5rSe4vm"
+			]
+		}
+	},
+	"version": 1
+}

@@ -1,0 +1,605 @@
+{
+	"compiler": {
+		"version": "0.8.31+commit.fd3a2265"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "applicationId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "ipfsCID",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "sha256Hash",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "docType",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					}
+				],
+				"name": "DocumentAnchored",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "RoleGranted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "RoleRevoked",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "applicationId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "claimedHash",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "isValid",
+						"type": "bool"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "verifier",
+						"type": "address"
+					}
+				],
+				"name": "VerificationResult",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "APPROVER_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "AUDITOR_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "DEFAULT_ADMIN_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "LOGGER_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "REGISTRY_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "REVIEWER_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "TREASURY_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "applicationId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "ipfsCID",
+						"type": "string"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "sha256Hash",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "string",
+						"name": "docType",
+						"type": "string"
+					}
+				],
+				"name": "anchorDocument",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "applicationId",
+						"type": "uint256"
+					}
+				],
+				"name": "documentCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "cid",
+						"type": "string"
+					}
+				],
+				"name": "getAppIdByCID",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "applicationId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "docIndex",
+						"type": "uint256"
+					}
+				],
+				"name": "getDocument",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "ipfsCID",
+								"type": "string"
+							},
+							{
+								"internalType": "bytes32",
+								"name": "sha256Hash",
+								"type": "bytes32"
+							},
+							{
+								"internalType": "string",
+								"name": "docType",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "anchoredAt",
+								"type": "uint256"
+							},
+							{
+								"internalType": "bool",
+								"name": "exists",
+								"type": "bool"
+							}
+						],
+						"internalType": "struct IPFSVerifier.DocumentRecord",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "applicationId",
+						"type": "uint256"
+					}
+				],
+				"name": "getDocumentManifest",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "ipfsCID",
+								"type": "string"
+							},
+							{
+								"internalType": "bytes32",
+								"name": "sha256Hash",
+								"type": "bytes32"
+							},
+							{
+								"internalType": "string",
+								"name": "docType",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "anchoredAt",
+								"type": "uint256"
+							},
+							{
+								"internalType": "bool",
+								"name": "exists",
+								"type": "bool"
+							}
+						],
+						"internalType": "struct IPFSVerifier.DocumentRecord[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32[]",
+						"name": "roles",
+						"type": "bytes32[]"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "grantMultipleRoles",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "grantRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "hasRole",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					}
+				],
+				"name": "renounceRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "revokeRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "applicationId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "docIndex",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "claimedHash",
+						"type": "bytes32"
+					}
+				],
+				"name": "verifyDocument",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "isValid",
+						"type": "bool"
+					},
+					{
+						"internalType": "string",
+						"name": "storedCID",
+						"type": "string"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"anchorDocument(uint256,string,bytes32,string)": {
+					"params": {
+						"applicationId": "The application this document belongs to",
+						"docType": "Document category string",
+						"ipfsCID": "The IPFS CID returned after upload",
+						"sha256Hash": "SHA-256 hash of the original file (bytes32)"
+					}
+				},
+				"verifyDocument(uint256,uint256,bytes32)": {
+					"params": {
+						"applicationId": "The application to check against",
+						"claimedHash": "SHA-256 hash of the document being verified",
+						"docIndex": "Index of the document in the application's list"
+					},
+					"returns": {
+						"isValid": "     True if the hash matches the stored record",
+						"storedCID": "   The original IPFS CID stored on-chain"
+					}
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"anchorDocument(uint256,string,bytes32,string)": {
+					"notice": "Anchor an IPFS CID to a specific application on-chain"
+				},
+				"documentCount(uint256)": {
+					"notice": "Get total documents submitted for an application"
+				},
+				"getAppIdByCID(string)": {
+					"notice": "Find which application a CID belongs to (reverse lookup)"
+				},
+				"getDocument(uint256,uint256)": {
+					"notice": "Get a specific document record"
+				},
+				"getDocumentManifest(uint256)": {
+					"notice": "Get all document records for an application"
+				},
+				"grantMultipleRoles(bytes32[],address)": {
+					"notice": "Convenience: grant multiple roles to one account (admin only)"
+				},
+				"grantRole(bytes32,address)": {
+					"notice": "Grant a role to an account (admin only)"
+				},
+				"hasRole(bytes32,address)": {
+					"notice": "Check if an account has a specific role"
+				},
+				"renounceRole(bytes32)": {
+					"notice": "An account can voluntarily renounce their own role"
+				},
+				"revokeRole(bytes32,address)": {
+					"notice": "Revoke a role from an account (admin only)"
+				},
+				"verifyDocument(uint256,uint256,bytes32)": {
+					"notice": "Verify a document's integrity by comparing hash to stored hash"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"IPFSVerifier.sol": "IPFSVerifier"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"IPFSVerifier.sol": {
+			"keccak256": "0x797be392ee2d0c0221d32b494ec19d2f37cd298d280458c0f8ae1290d7e27bd4",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://69b140a6e4555dc15acea1ea4aeece77054af4ef9d96b5620068c4b32d8e8537",
+				"dweb:/ipfs/QmPMKZ8zF46hcajbAnpcad3b5t1nzZuKRukdk2tmN2iCZq"
+			]
+		},
+		"RoleAccess.sol": {
+			"keccak256": "0xab7e846cbe1bed61ba5d763c1071c1eac8e0fe716e50747f3256af41b6bc466d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c269ed651005f55e9dc72f5cb68fedd28c9b7f963ed945c0784882f6c824f6cf",
+				"dweb:/ipfs/QmQBPPWqP4brdiavQvFudDgnGe5d1wqwP4xYfSnkiKDzPr"
+			]
+		}
+	},
+	"version": 1
+}
